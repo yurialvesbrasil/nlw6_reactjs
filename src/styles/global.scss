@@ -6,9 +6,45 @@
 
 body{
     background-color: #f8f8f8;
-    color:#29292e
+    color:#29292e;
+    font: 100%
 }
 
 body, input, button, textarea{
     font: 400 16px 'Roboto', sans-serif; 
+    font: 400 1rem 'Roboto', sans-serif;
 }
+
+
+.body-loader {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  transform: scale(5);
+
+  span{
+    color:#e5e5e5;
+    font-size: 8px;
+  }
+  
+}
+
+.c-loader {
+    position: absolute;
+    animation: is-rotating 1s infinite;
+    border: 6px solid #e5e5e5;
+    border-radius: 50%;
+    border-top-color: #835afd;
+    height: 50px;
+    width: 50px;
+    z-index: 10;
+    z-index: 9999; 
+}
+
+
+@keyframes is-rotating {
+    to {
+      transform: rotate(1turn);
+    }
+  }

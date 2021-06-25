@@ -8,6 +8,9 @@ import { Question } from '../../components/Question';
 import { useRoom } from '../../hooks/useRoom';
 import { database } from '../../services/firebase';
 import { useHistory } from 'react-router-dom';
+import { ShowModal } from '../../components/Modal';
+import React from 'react';
+
 
 type RoomParams = {
     id: string;
@@ -17,6 +20,8 @@ export function AdminRoom(){
     const params = useParams<RoomParams>();
     const { title, questions } = useRoom(params.id);
     const history = useHistory();
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+    const [selectedQuestioId, setSelectedQuestioID] = React.useState('');
 
     async function handleEndRoom(){
         await database.ref(`rooms/${params.id}`).update({
@@ -26,10 +31,21 @@ export function AdminRoom(){
         history.push('/');
     }
 
-    async function handleDeleteQuestion(questionId: string){
-        if(window.confirm('Tem certeza que você deseja excluir esta pergunta?')){
-            await database.ref(`rooms/${params.id}/questions/${questionId}`).remove();
-        }
+    function handleOpenModal(){
+        setIsOpen(true);
+    }
+
+    function handleCloseModal(){
+        setIsOpen(false);
+    }
+
+    function handleOkModal(){
+        handleDeleteQuestion();
+        setIsOpen(false);
+    }
+
+    async function handleDeleteQuestion(){
+        await database.ref(`rooms/${params.id}/questions/${selectedQuestioId}`).remove();
     }
 
     return(
@@ -44,6 +60,7 @@ export function AdminRoom(){
                 </div>
             </header>
             <main>
+                <ShowModal modalIsOpen={modalIsOpen} closeModal={handleCloseModal} okModal={handleOkModal} />
                 <div className="room-title">
                     <h1>Sala {title}</h1>
                     { questions.length > 0 ? questions.length === 1 ? <span>{questions.length} pergunta </span>:<span>{questions.length} perguntas </span> : <span>0 perguntas</span>}  
@@ -59,7 +76,9 @@ export function AdminRoom(){
                             >
                                 <button
                                     type="button"
-                                    onClick={() => handleDeleteQuestion(question.id)}
+                                    onClick={() => {
+                                        setSelectedQuestioID(question.id);
+                                        return handleOpenModal()}}
                                 >
                                     <img src={deleteImg} alt="Remover pergunta"></img>
                                 </button>

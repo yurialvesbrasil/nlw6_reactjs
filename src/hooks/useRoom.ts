@@ -65,8 +65,9 @@ export function useRoom(roomId: string){
                     likeId: Object.entries(value.likes ?? {}).find(([key, like]) => like.authorId === user?.id)?.[0]
                   }
                 });
+                const questionSorted = parsedQuestions.sort((a,b) => a.likeCount - b.likeCount);
                 setTitle(databaseRoom.title);
-                setQuestions(parsedQuestions);
+                setQuestions(questionSorted.reverse());
             });
             
             return () =>{

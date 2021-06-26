@@ -1,6 +1,5 @@
 import Modal from 'react-modal';
 import { Button } from '../Button';
-import { Question } from '../Question';
 import './styles.scss';
 
 const customStyles: ReactModal.Styles = {

@@ -12,6 +12,7 @@ import React from 'react';
 import deleteImg from '../../assets/images/delete.svg';
 import checkImg from '../../assets/images/check.svg';
 import answerImg from '../../assets/images/answer.svg';
+import { useTheme } from '../../hooks/useTheme';
 
 type RoomParams = {
     id: string;
@@ -23,7 +24,8 @@ export function AdminRoom() {
     const history = useHistory();
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [selectedQuestioId, setSelectedQuestioID] = React.useState('');
-
+    const { theme } = useTheme();
+    
     async function handleEndRoom() {
         await database.ref(`rooms/${params.id}`).update({
             endedAt: new Date()
@@ -62,7 +64,7 @@ export function AdminRoom() {
     }
 
     return (
-        <div id="page-room">
+        <div id="page-room" className={theme}>
             <header>
                 <div className="content">
                     <img src={logoImg} alt="Logo do site" />
@@ -75,7 +77,7 @@ export function AdminRoom() {
             <main>
                 <ShowModal modalIsOpen={modalIsOpen} closeModal={handleCloseModal} okModal={handleOkModal} />
                 <div className="room-title">
-                    <h1>Sala {title}</h1>
+                    <h1 className={theme}>Sala {title}</h1>
                     {questions.length > 0 ? questions.length === 1 ? <span>{questions.length} pergunta </span> : <span>{questions.length} perguntas </span> : <span>0 perguntas</span>}
                 </div>
 

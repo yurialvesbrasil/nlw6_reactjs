@@ -59,8 +59,9 @@ export function Home() {
             </aside>
             <main>
                 <div className="main-content">
-
-                    <button onClick={toggleTheme}>Toggle</button>
+                    <div className="button-theme">
+                        <Button isOutline onClick={toggleTheme}>{theme}</Button>
+                    </div>
                     <img src={logoImg} alt="Letmeask" />
                     {user ? (
                         <div className="logado-ops">

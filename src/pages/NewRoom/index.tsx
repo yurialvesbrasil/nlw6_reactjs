@@ -5,6 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { FormEvent, useState } from 'react';
 import { database } from '../../services/firebase';
 import { useAuth } from '../../hooks/useAuth';
+import { useTheme } from '../../hooks/useTheme';
 
 export function NewRoom() {
     
@@ -12,7 +13,8 @@ export function NewRoom() {
     const { user } = useAuth();
     const history = useHistory();
     const [newRoom, setNewRoom] = useState('');
-
+    const { theme } = useTheme();
+    
     //Função para criar uma nova sala
     async function handleCreateNewRoom(event: FormEvent){
         //Previde a piscada da tela por conta 
@@ -33,7 +35,7 @@ export function NewRoom() {
     }
 
     return (
-        <div id="page-auth">
+        <div id="page-auth" className={theme}>
             <aside>
                 <img src={illustrationImg} alt="Ilustração simbolizando perguntas e respostas"></img>
                 <strong>Crie salas de Q&amp;A ao-vivo</strong>

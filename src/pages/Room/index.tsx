@@ -8,6 +8,8 @@ import { database } from '../../services/firebase';
 import { Question } from '../../components/Question';
 import { useAuth } from '../../hooks/useAuth';
 import { useRoom } from '../../hooks/useRoom';
+import { useTheme } from '../../hooks/useTheme';
+
 
 type RoomParams = {
     id: string;
@@ -18,7 +20,8 @@ export function Room() {
     const [newQuestion, setNewQuestion] = useState('');
     const { user, signInWithGoogle } = useAuth();
     const { title, questions } = useRoom(params.id);
-
+    const { theme } = useTheme();
+    
     async function handleLogin() {
         if (user) return;
         await signInWithGoogle();
@@ -61,7 +64,7 @@ export function Room() {
     }
 
     return (
-        <div id="page-room">
+        <div id="page-room" className={theme}>
             <header>
                 <div className="content">
                     <img src={logoImg} alt="Logo do site" />
@@ -70,7 +73,7 @@ export function Room() {
             </header>
             <main>
                 <div className="room-title">
-                    <h1>Sala {title}</h1>
+                    <h1 className={theme}>Sala {title}</h1>
                     {questions.length > 0 ? questions.length === 1 ? <span>{questions.length} pergunta </span> : <span>{questions.length} perguntas </span> : <span>0 perguntas</span>}
                 </div>
 
@@ -84,7 +87,7 @@ export function Room() {
                         {user ? (
                             <div className="user-info">
                                 <img src={user.avatar} alt={user.name} />
-                                <span>{user.name}</span>
+                                <span className={theme}>{user.name}</span>
                             </div>
                         ) : (
                             <span >Para enviar uma pergunta, <button onClick={handleLogin}>faça seu login.</button></span>

@@ -19,23 +19,22 @@
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - [React](https://reactjs.org)
-- [Next.js](https://nextjs.org/)
+- [Create-React-App](https://create-react-app.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 
 ## 💻 Projeto
 
-O podcastr é um app para reprodução de episódios em áudio do seu podcast favorito.
+O letmeask é um app para cadastro de perguntas que vão sendo respondidas em uma live.
 
 ## 🔖 Layout
 
-Você pode visualizar o layout do projeto através [desse link](https://www.figma.com/file/UwFEntsHpHYJlHNQAQr4gA/Podcastr/duplicate). É necessário ter conta no [Figma](http://figma.com/) para acessá-lo.
+Você pode visualizar o layout do projeto através [desse link](https://www.figma.com/file/nISS2tSymePUUswLf2ciG5/Letmeask). É necessário ter conta no [Figma](http://figma.com/) para acessá-lo.
 
 ## 🚀 Como executar
 
 - Clone o repositório
 - Instale as dependências com `yarn`
-- Inicie a fake api com `yarn server`
-- Inicie o servidor com `yarn dev`
+- Inicie com `yarn server`
 
 Agora você pode acessar [`localhost:3000`](http://localhost:3000) do seu navegador.
 
@@ -45,4 +44,4 @@ Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para
 
 ---
 
-Feito com ♥ by Rocketseat 👋🏻 [Participe da nossa comunidade!](https://discordapp.com/invite/gCRAFhc)
+Feito com ♥ by Yuri Brasil 👋🏻

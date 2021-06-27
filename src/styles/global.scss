@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+html {
+  /* a cada 1rem será considera 10px */
+  font-size: 62.5%;
+}
+
 body{
     background-color: #f8f8f8;
     color:#29292e;
@@ -17,7 +22,7 @@ body{
 
 body, input, button, textarea{
     font: 400 16px 'Roboto', sans-serif; 
-    font: 400 1rem 'Roboto', sans-serif;
+    font: 400 1.6rem 'Roboto', sans-serif;
 }
 
 
@@ -31,6 +36,7 @@ body, input, button, textarea{
   span{
     color:#e5e5e5;
     font-size: 8px;
+    font-size: 0.8rem;
   }
   
 }
@@ -43,6 +49,8 @@ body, input, button, textarea{
     border-top-color: #835afd;
     height: 50px;
     width: 50px;
+    height: 5rem;
+    width: 5rem;
     z-index: 10;
     z-index: 9999; 
 }

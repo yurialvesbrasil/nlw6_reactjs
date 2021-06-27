@@ -14,33 +14,33 @@
         justify-content: center;
 
         padding: 120px 80px;
-        padding: 7.5rem 5rem;
+        padding: 12rem 8rem;
 
         img{
            max-width: 320px; 
-           max-width: 20rem; 
+           max-width: 32rem; 
         }
 
         strong{
             font: 700 36px 'Poppins', sans-serif;
-            font: 700 2.25rem 'Poppins', sans-serif;
+            font: 700 3.6rem 'Poppins', sans-serif;
             
             line-height: 42px;
-            line-height: 1.61rem;
+            line-height: 4.2rem;
 
             margin-top: 16px;
-            margin-top: 1rem;
+            margin-top: 1.6rem;
         }
 
         p{
             font-size: 24px;
-            font-size: 1.5rem;
+            font-size: 2.4rem;
 
             line-height: 32px;
-            line-height: 2rem;
+            line-height: 3.2rem;
 
             margin-top: 16px;
-            margin-top: 1rem;
+            margin-top: 1.6rem;
 
             color: #f8f8f8;
         }
@@ -49,7 +49,7 @@
     main{
         flex: 8;
         padding: 0 32px;
-        padding: 0 2rem;
+        padding: 0 3.2rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -60,7 +60,7 @@
         flex-direction: column;
         width: 100%;
         max-width: 320px;
-        max-width: 20rem;
+        max-width: 32rem;
         align-items: stretch;
         text-align: center; 
 
@@ -71,23 +71,27 @@
 
         h2{
             font-size: 24px;
-            font-size: 1.5rem;
+            font-size: 2.4rem;
             margin: 64px 0 24px;
-            margin: 4rem 0 1.5rem;
+            margin: 6.4rem 0 2.4rem;
             font-family: 'Poppins', sans-serif;
         }
 
         form {
             input{
                 height: 50px;
+                height: 5rem;
                 border-radius: 8px;
                 padding: 0 16px;
+                padding: 0 1.6rem;
                 background-color: #fff;
                 border: 1px solid #a8a8b3;
             }
 
             button{
                 margin-top: 16px;
+                margin-top: 1.6rem;
+
             }
 
             button, input{
@@ -97,10 +101,10 @@
 
         p{
             font-size: 14px;
-            font-size: 0.88rem;
+            font-size: 1.4rem;
             color: #737380;
             margin-top: 16px;
-            margin-top: 1rem;
+            margin-top: 1.6rem;
         }
 
         a{
@@ -111,7 +115,7 @@
     .button-theme{
         position: absolute !important;
         right: 8px !important;
-        top: 1rem !important;
+        top: 10px !important;
     }
 
     .create-room{
@@ -191,7 +195,22 @@
 
             button{
                 height: 40px;
+                height: 4rem;
             } 
         }
     }
+    
+   $breakpoint-tablet: 768px; 
+   @media (max-width: $breakpoint-tablet) {
+        #page-auth{
+            display: block !important;
+        }
+
+        main{
+            margin-top: 80px;
+        }
+
+    }
+
+ 
 }

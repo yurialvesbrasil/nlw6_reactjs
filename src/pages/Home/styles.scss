@@ -53,10 +53,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-
-        .button-theme{
-            margin-bottom: 16px;
-        }
     }
 
     .main-content{
@@ -68,6 +64,7 @@
         align-items: stretch;
         text-align: center; 
 
+    
         > img{
             align-self: center;
         }
@@ -109,6 +106,12 @@
         a{
             color: #e559f9;
         }
+    }
+
+    .button-theme{
+        position: absolute !important;
+        right: 8px !important;
+        top: 1rem !important;
     }
 
     .create-room{

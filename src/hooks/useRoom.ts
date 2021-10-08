@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { database } from "../services/firebase";
 import { useAuth } from '../hooks/useAuth';
 
@@ -34,14 +34,14 @@ export function useRoom(roomId: string){
     const {user} = useAuth();
     const [questions, setQuestions] = useState<QuestionType[]>([]);
     const [title, setTitle] = useState<string>('');
-    const history = useHistory();
+    const navigate = useNavigate();
     
         //Só usuários logado pode ver essa página
         useEffect(() => {
             if(!user){
-                history.push('/');
+                navigate('/');
             }
-        } ,[user, history]);
+        } ,[user, navigate]);
     
         //Função hook que dispara um evento sempre que 
         //uma informação mudar, no caso é o id da sala

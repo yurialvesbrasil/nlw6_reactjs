@@ -11,17 +11,17 @@ import { useRoom } from '../../hooks/useRoom';
 import { useTheme } from '../../hooks/useTheme';
 
 
-type RoomParams = {
+/*type RoomParams = {
     id: string;
-}
+}*/
 
 export function Room() {
-    const params = useParams<RoomParams>();
+    const { id } = useParams();
     const [newQuestion, setNewQuestion] = useState('');
     const { user, signInWithGoogle } = useAuth();
-    const { title, questions } = useRoom(params.id);
+    const { title, questions } = useRoom(id ?? "0");
     const { theme } = useTheme();
-    
+
     async function handleLogin() {
         if (user) return;
         await signInWithGoogle();
@@ -48,18 +48,18 @@ export function Room() {
             isAnswered: false
         }
 
-        await database.ref(`rooms/${params.id}/questions`).push(question);
+        await database.ref(`rooms/${id}/questions`).push(question);
 
         setNewQuestion('');
     }
 
     async function handleLikeQuestion(questionId: string, likeId: string | undefined) {
         if (!likeId) {
-            await database.ref(`rooms/${params.id}/questions/${questionId}/likes`).push({
+            await database.ref(`rooms/${id}/questions/${questionId}/likes`).push({
                 authorId: user?.id,
             });
         } else {
-            await database.ref(`rooms/${params.id}/questions/${questionId}/likes/${likeId}`).remove();
+            await database.ref(`rooms/${id}/questions/${questionId}/likes/${likeId}`).remove();
         }
     }
 
@@ -68,7 +68,7 @@ export function Room() {
             <header>
                 <div className="content">
                     <img src={logoImg} alt="Logo do site" />
-                    <RoomCode code={params.id} />
+                    <RoomCode code={id ?? ""} />
                 </div>
             </header>
             <main>

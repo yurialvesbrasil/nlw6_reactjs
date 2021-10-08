@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import { Question } from '../../components/Question';
 import { useRoom } from '../../hooks/useRoom';
 import { database } from '../../services/firebase';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ShowModal } from '../../components/Modal';
 import React from 'react';
 import deleteImg from '../../assets/images/delete.svg';
@@ -14,24 +14,24 @@ import checkImg from '../../assets/images/check.svg';
 import answerImg from '../../assets/images/answer.svg';
 import { useTheme } from '../../hooks/useTheme';
 
-type RoomParams = {
+/*type RoomParams = {
     id: string;
-}
+}*/
 
 export function AdminRoom() {
-    const params = useParams<RoomParams>();
-    const { title, questions } = useRoom(params.id);
-    const history = useHistory();
+    const { id } = useParams();
+    const { title, questions } = useRoom(id ?? "0");
+    const navigate = useNavigate();
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [selectedQuestioId, setSelectedQuestioID] = React.useState('');
     const { theme } = useTheme();
-    
+
     async function handleEndRoom() {
-        await database.ref(`rooms/${params.id}`).update({
+        await database.ref(`rooms/${id}`).update({
             endedAt: new Date()
         })
 
-        history.push('/');
+        navigate('/');
     }
 
     function handleOpenModal() {
@@ -48,17 +48,17 @@ export function AdminRoom() {
     }
 
     async function handleDeleteQuestion() {
-        await database.ref(`rooms/${params.id}/questions/${selectedQuestioId}`).remove();
+        await database.ref(`rooms/${id}/questions/${selectedQuestioId}`).remove();
     }
 
     async function handleCheckQuestionAsAnswered(questioId: string) {
-        await database.ref(`rooms/${params.id}/questions/${questioId}`).update({
+        await database.ref(`rooms/${id}/questions/${questioId}`).update({
             isAnswered: true,
         });
     }
 
     async function handleHighlightQuestion(questioId: string) {
-        await database.ref(`rooms/${params.id}/questions/${questioId}`).update({
+        await database.ref(`rooms/${id}/questions/${questioId}`).update({
             isHighLighted: true,
         });
     }
@@ -69,7 +69,7 @@ export function AdminRoom() {
                 <div className="content">
                     <img src={logoImg} alt="Logo do site" />
                     <div>
-                        <RoomCode code={params.id} />
+                        <RoomCode code={id ?? "0"} />
                         <Button isOutline onClick={handleEndRoom}>Encerrar sala</Button>
                     </div>
                 </div>

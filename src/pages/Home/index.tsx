@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import illustrationImg from '../../assets/images/illustration.svg';
 import logoImg from '../../assets/images/logo.svg';
 import googleIconImg from '../../assets/images/google-icon.svg';
@@ -9,8 +9,8 @@ import { FormEvent, useState } from 'react';
 import { database } from '../../services/firebase';
 import { useTheme } from '../../hooks/useTheme';
 
-export function Home() {
-    const history = useHistory();
+export default function Home() {
+    const navigate = useNavigate();
     const { user, signInWithGoogle, signOut } = useAuth();
     const [roomCode, setRoomCode] = useState('');
     const { theme, toggleTheme } = useTheme();
@@ -20,12 +20,12 @@ export function Home() {
             await signOut();
         }
     }
-    
+
     async function handleCreateRoom() {
         if (!user) {
             await signInWithGoogle();
         }
-        history.push('/rooms/new');
+        navigate('/rooms/new');
     }
 
     async function handleJoinRoom(event: FormEvent) {
@@ -42,12 +42,12 @@ export function Home() {
             return;
         }
 
-        if (roomRef.val().endedAt){
+        if (roomRef.val().endedAt) {
             alert('Room already closed.');
             return;
         }
 
-        history.push(`/rooms/${roomCode}`);
+        navigate(`/rooms/${roomCode}`);
     }
 
     return (
